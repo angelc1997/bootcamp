@@ -1,0 +1,202 @@
+/* 全版面設定 */
+* {
+    font-size: 20px;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* 頁首設定 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    background-color: #ffffff;
+    padding: 0 10px;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+/* 封面設定 */
+.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    background-color: rgba(197, 213, 255);
+}
+
+.cover_text {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+/* 主內容設定 */
+.wrapper {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin: 20px auto;
+}
+
+.sbox {
+    display: flex;
+    align-items: center;
+    background-color: rgba(197, 213, 255, 0.5);
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.sbox_image {
+    width: 80px;
+    height: 50px;
+    margin-right: 20px;
+    background-color: #ffc1c1;
+}
+
+.bbox_image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.bbox_content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.bbox_icon {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+}
+
+i {
+    font-size: 24px;
+    color: rgba(255, 241, 40, 0.7);
+}
+
+.bbox_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.a, .b, .c {
+    grid-column: span 2;
+}
+
+.d, .i {
+    grid-column: span 2;
+}
+
+.menu_mobile, .menu_mobile--close {
+    display: none;
+}
+
+.item a {
+    text-decoration: none;
+    color: black;
+}
+
+
+@media (max-width: 1200px) {
+    .wrapper {
+        max-width: 90%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 50px 50px 250px 250px 250px ;
+    }
+
+    .c {
+        grid-column: span 4;
+    }
+
+    .d,.i {
+        grid-column: span 1;
+    }
+
+    .l, .m {
+        grid-column: span 2;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        grid-template-rows: auto;
+    }
+
+    .a, .b, .c {
+        grid-column: span 4;
+    }
+
+    .d,.e,.f,.g,.h,.i,.j,.k,.l,.m {
+        grid-column: span 4;    
+    }
+
+    /* 漢堡選單 */
+    .menu {
+        display: none;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: white;
+        width: 200px;
+        height: 500px;
+        padding: 20px;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2)
+    }
+
+    .item {
+        margin-top: 20px;
+        padding: 20px;
+    }
+   
+    .menu_mobile {
+        display: block;
+        cursor: pointer;
+    }
+
+    .menu_mobile--close {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        z-index: 10001;
+        top: 10px;
+        right: 20px;
+    }
+
+}
+
+
