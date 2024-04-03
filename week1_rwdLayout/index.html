@@ -9,18 +9,26 @@
 </head>
 <body>
 <!-- 頁首設定 -->
-    <div class="header">
-        <div class="logo">My Website</div>
-        <div class="menu">
-            <div class="item"><a href="#">Item1</a></div>
-            <div class="item"><a href="#">Item2</a></div>
-            <div class="item"><a href="#">Item3</a></div>
-            <div class="item"><a href="#">Item4</a></div>
-        </div>
-        <div class="menu_mobile" onClick="toggleMenu()"><i class="fa-solid fa-bars" style="color: black;"></i></div>
+<nav>
+    <ul class="menu">
+        <li class="menu-close" onclick=hideMenu()><a href="#"><i class="fa-solid fa-circle-xmark" style="color: black"></i></a></li>
+        <li><a href="#">Item1</a></li>
+        <li><a href="#">Item2</a></li>
+        <li><a href="#">Item3</a></li>
+        <li><a href="#">Item4</a></li>
+    </ul>
 
-        <div class="menu_mobile--close" onClick="toggleMenu()"><i class="fa-solid fa-circle-xmark" style="color: black"></i></div>
-    </div>
+    <ul>
+      <li class="logo"><a href="#">My Website</a></li>
+      <li class="hideOnMobile"><a href="#">Item1</a></li>
+      <li class="hideOnMobile"><a href="#">Item2</a></li>
+      <li class="hideOnMobile"><a href="#">Item3</a></li>
+      <li class="hideOnMobile"><a href="#">Item4</a></li>
+
+      <li class="menu-button" onclick=showMenu()><a href="#"><i class="fa-solid fa-bars" style="color: black;"></i></a></li>
+    </ul>
+  </nav>
+
 
 <!--封面設定  -->
     <div class="cover">
