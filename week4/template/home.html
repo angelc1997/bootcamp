@@ -1,0 +1,45 @@
+{% extends "template.html" %}
+
+{% block content %}
+    <div class="login_title">登入系統</div>
+
+    <form id="login_form" action="/signin" method="post">
+
+        <div class="login_account">
+            <div class="login_text">帳號</div>
+            <input type="text" class="login_input" name="username" id="username">
+        </div>
+
+        <div class="login_account">
+            <div class="login_text">密碼</div>
+            <input type="password" class="login_input" name="password" id="password">
+        </div>
+
+        <div class="login_account">
+            <div class="login_text">同意條款</div>
+            <input type="checkbox" class="login_checkbox" id="checkbox" name="checkbox" value="false">
+        </div>
+
+        <div class="login_button">
+            <button type="submit" id="submit_button">登入</button>
+        </div>
+    </form>   
+
+    <hr class="hr">
+
+    <form id="count_form" action="/square" method="post">
+        <div class="login_title">計算正整數的平方</div>
+    
+        <div class="login_account">
+            <div class="login_text">正整數</div>
+            <input type="text" class="login_input" name="count" id="count">
+        </div>
+    
+        <div class="login_button">
+            <button type="submit" id="submit_button">計算</button>
+        </div>
+    </form>
+   
+
+{% endblock %}
+
