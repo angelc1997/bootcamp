@@ -1,0 +1,146 @@
+{% extends "template.html" %} {% block content %}
+<div class="login_account">
+  <div class="member_message">{{ member }}</div>
+  <div class="message">{{ message }}</div>
+</div>
+<div class="login_account"><a href="/signout">登出系統</a></div>
+
+<hr class="hr" />
+
+<div class="login_title">快來留言吧</div>
+<form id="comment_form" action="/createMessage" method="post">
+  <div class="login_account">
+    <div class="login_text">內容</div>
+    <input type="text" class="login_input" name="comment" id="comment" />
+  </div>
+
+  <div class="login_button">
+    <button type="submit" id="submit_button">送出</button>
+  </div>
+</form>
+
+<hr class="hr" />
+<div class="login_title">留言板</div>
+{% if comments %} {% for comment in comments %}
+<div class="login_account">
+  <div class="login_text" style="font-weight: bold">{{ comment[5] }}:</div>
+  <div class="login_text">{{ comment[2] }}</div>
+
+  {% if comment[1] == member_id %}
+  <div>
+    <form action="/deleteMessage/{{ comment[0] }}" method="post">
+      <input type="hidden" name="id" value="{{ comment[0] }}" />
+      <button
+        type="submit"
+        class="comment_button"
+        style="margin: 0 10px; padding: 0 4px"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </form>
+  </div>
+  {% endif %}
+</div>
+{% endfor %} {% endif %}
+
+<hr class="hr" />
+
+<div class="login_title">查詢會員姓名</div>
+
+<div class="login_account">
+  <input type="text" class="login_input" name="search_name" id="search_name" />
+  <button
+    type="submit"
+    id="search_button"
+    style="margin: auto 10px; height: 50px"
+  >
+    查詢
+  </button>
+</div>
+
+<div class="login_account">
+  <div class="login_text" id="result_searchname"></div>
+</div>
+
+<hr class="hr" />
+
+<div class="login_title">更新我的姓名</div>
+
+<div class="login_account">
+  <input type="text" class="login_input" name="update_name" id="update_name" />
+  <button
+    type="submit"
+    id="update_button"
+    style="margin: auto 10px; height: 50px"
+  >
+    更新
+  </button>
+</div>
+
+<div class="login_account">
+  <div class="login_text" id="result_updatename"></div>
+</div>
+
+<script>
+  document
+    .getElementById("comment_form")
+    .addEventListener("submit", function (event) {
+      var comment = document.getElementById("comment").value.trim();
+      if (!comment) {
+        alert("請輸入留言內容");
+        event.preventDefault();
+      }
+    });
+
+  document.getElementById("search_button").addEventListener("click", search);
+  document.getElementById("update_button").addEventListener("click", update);
+
+  function search() {
+    var name = document.getElementById("search_name").value.trim();
+
+    fetch("/api/member?username=" + name, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data === "null") {
+          document.getElementById("result_searchname").textContent =
+            "查無此會員";
+        } else {
+          document.getElementById("result_searchname").textContent =
+            data.data.name + "(" + data.data.username + ")";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  function update() {
+    var new_name = document.getElementById("update_name").value.trim();
+
+    fetch("/api/member", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: new_name,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          document.getElementById("result_updatename").textContent = "更新成功";
+          document.querySelector(".member_message").textContent = new_name;
+        } else {
+          document.getElementById("result_updatename").textContent = "更新失敗";
+        }
+      })
+
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+</script>
+{% endblock %}
